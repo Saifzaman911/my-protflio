@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Saif Zaman — Professional Portfolio</title>
+    <!-- 
+        CSS is contained within the <style> block.
+        All colors use Hex codes (#RRGGBB) to meet the "no RGB/RGBA" requirement.
+    -->
+    <style>
+        :root{
+            /* Professional Dark Palette using Hex Codes Only */
+            --bg: #1A1A1A; /* Very dark grey background */
+            --card: #282828; /* Slightly lighter dark grey for cards */
+            --muted: #A0A0A0; /* Light grey for secondary text */
+            --accent: #0077B6; /* Professional Blue (LinkedIn Blue) */
+            --accent-light: #5B9FD8; /* Lighter shade for gradients */
+            --text: #F0F0F0; /* Off-white text */
+            --border: #3A3A3A; /* Border color */
+            --hover-bg: #333333; /* Hover/Subtle Background */
+            --gap: 18px;
+            --radius: 12px;
+            --maxw: 1100px;
+            font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* Reset and Base Styles */
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{height:100%}
+        body{
+            background-color: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            padding: 28px;
+            display: flex;
+            justify-content: center;
+            font-size: 16px;
+            line-height: 1.45;
+        }
+
+        .wrap{
+            width:100%;
+            max-width:var(--maxw);
+            display:grid;
+            grid-template-columns: 320px 1fr;
+            gap:var(--gap);
+        }
+
+        /* SIDEBAR STYLES */
+        aside.card{
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 24px;
+            /* Simple shadow using hex codes */
+            box-shadow: 0 4px 8px #000000;
+            min-height: 380px;
+            position: sticky;
+            top: 28px;
+            align-self: start;
+            border: 1px solid var(--border);
+        }
+
+        .avatar{
+            width: 96px; height: 96px; border-radius: 50%; /* Circle for professional look */
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 32px; color: #FFFFFF; margin-bottom: 16px;
+            box-shadow: 0 4px 10px #000000;
+        }
+
+        .name{font-size:22px;font-weight:700;margin-bottom:4px}
+        .role{color:var(--muted);font-size:14px;margin-bottom:14px}
+        .desc{color:var(--muted);font-size:15px;margin-bottom:20px}
+
+        .contact-list{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+        .contact-list a{
+            text-decoration:none;color:var(--text);font-size:14px;
+            background: var(--hover-bg); /* Use a solid hex color for links */
+            padding: 10px 14px; border-radius: 10px;
+            display:flex; gap: 10px; align-items: center; border: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+        .contact-list a:hover{
+            background: #383838;
+        }
+
+        .btn-primary{
+            display:inline-block;padding:12px 20px;border-radius:10px;
+            background:linear-gradient(90deg,var(--accent),var(--accent-light));color:#FFFFFF;font-weight:600;
+            text-decoration:none;margin-top:20px;border:none;
+            box-shadow: 0 6px 12px #000000;
+            transition: transform 0.2s;
+        }
+        .btn-primary:hover{
+            transform: translateY(-2px);
+        }
+
+        /* MAIN CONTENT STYLES */
+        main{
+            background: var(--card);
+            border-radius:var(--radius);
+            padding:24px;
+            min-height:380px;
+            border:1px solid var(--border);
+            box-shadow: 0 4px 8px #000000;
+        }
+
+        header.top{
+            display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;
+        }
+        .title h1{font-size:24px;margin-bottom:4px}
+        .title p{color:var(--muted);font-size:15px}
+
+        .stats{display:flex;gap:12px;align-items:center}
+        .stat{
+            background: var(--hover-bg);
+            padding: 8px 12px; border-radius: 10px; font-size: 13px; border: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        /* Projects grid */
+        .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:10px}
+        .project{
+            background: var(--hover-bg);
+            border-radius:12px;padding:16px;border:1px solid var(--border);
+            transition:transform .25s, box-shadow .25s;
+            cursor: pointer;
+        }
+        .project:hover{
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px #000000;
+            background: #333333;
+        }
+        .project h3{font-size:18px;margin-bottom:6px; color: var(--accent)}
+        .project p{color:var(--muted);font-size:14px;margin-bottom:10px}
+        .tags{display:flex;flex-wrap:wrap;gap:8px}
+        .tag{
+            font-size:12px;padding:6px 10px;border-radius:999px;
+            background: var(--border); 
+            color: var(--muted); border: 1px solid #555555;
+        }
+
+        /* Skills block */
+        .skills{
+            margin-top: 24px; padding: 16px; background: #222222;
+            border-radius: 10px; border: 1px solid var(--border);
+        }
+        .skill-list{
+            display:grid;grid-template-columns:repeat(2,1fr);gap:8px;
+            max-height:220px; overflow:auto; padding-right: 6px;
+        }
+        .skill-item{
+            font-size:13px;padding:8px 10px;border-radius:8px;
+            background: var(--border);
+            color: var(--text); border: 1px solid #444444;
+        }
+
+        /* Contact form */
+        form.contact{
+            margin-top:16px;display:grid;gap:12px;
+        }
+        form input, form textarea{
+            background: #333333; border: 1px solid #555555;
+            padding: 12px; border-radius: 10px; color: var(--text); font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        form input:focus, form textarea:focus{
+            border-color: var(--accent);
+        }
+        form textarea{min-height:120px;resize:vertical}
+        .send{
+            display:inline-block;padding:12px 20px;border-radius:10px;
+            background:var(--accent);color:white;text-decoration:none;border:0; cursor:pointer;
+            font-weight: 600;
+        }
+
+        footer{margin-top:24px;color:var(--muted);font-size:13px;text-align:center}
+
+        /* Responsive */
+        @media (max-width:960px){
+            .wrap{grid-template-columns: 1fr; padding-bottom:20px}
+            aside.card{position:relative;top:auto;}
+            .projects{grid-template-columns:1fr}
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="wrap">
+
+        <!-- SIDEBAR -->
+        <aside class="card" aria-label="Saif Zaman's Profile Sidebar">
+            <div style="display:flex;flex-direction:column;align-items:flex-start">
+                <!-- Avatar uses a simple gradient of hex colors -->
+                <div class="avatar">SZ</div>
+                <div class="name">Saif Zaman</div>
+                <div class="role">BSc in CSE &bull; Frontend Web Developer</div>
+            </div>
+
+            <div class="desc">
+                I specialize in building **clean, accessible, and high-performance user interfaces** using semantic HTML and robust CSS principles. Driven by a focus on maintainable code and exceptional user experience.
+            </div>
+
+            <div style="font-weight:700;margin-top:20px;margin-bottom:4px;color:var(--accent)">Contact & Links</div>
+            <div class="contact-list" aria-hidden="false">
+                <a href="mailto:zaman22205101355@diu.edu.bd" title="Email">
+                    <span style="font-size:18px;">📧</span> zaman22205101355@diu.edu.bd
+                </a>
+                <a href="https://github.com/your-username" target="_blank" title="GitHub">
+                    <span style="font-size:18px;">🐙</span> github.com/your-username
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn">
+                    <span style="font-size:18px;">🔗</span> linkedin.com/in/yourprofile
+                </a>
+            </div>
+
+            <a class="btn-primary" href="#projects">Explore My Projects</a>
+
+            <div class="skills" aria-label="Core Skills">
+                <div style="font-weight:700;margin-bottom:10px;color:var(--accent)">Core Skills & Expertise</div>
+                <div class="skill-list">
+                    <div class="skill-item">HTML5 & Semantic Markup</div>
+                    <div class="skill-item">CSS3 (Flexbox/Grid)</div>
+                    <div class="skill-item">Responsive Design</div>
+                    <div class="skill-item">Accessibility (WCAG)</div>
+                    <div class="skill-item">JavaScript (Basic)</div>
+                    <div class="skill-item">UI/UX Prototyping</div>
+                    <div class="skill-item">Git & Version Control</div>
+                    <div class="skill-item">Performance Optimization</div>
+                    <div class="skill-item">VS Code</div>
+                    <div class="skill-item">Figma/Sketch</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <header class="top">
+                <div class="title">
+                    <h1>Professional Portfolio</h1>
+                    <p>Focused on Frontend Excellence | HTML, CSS, Responsive Design</p>
+                </div>
+                <div class="stats">
+                    <div class="stat">Projects: 6+</div>
+                    <div class="stat">Experience: 2 Years</div>
+                </div>
+            </header>
+
+            <!-- About -->
+            <section aria-label="About" style="margin-bottom:30px">
+                <h2 style="font-size:20px;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px">About Me & My Philosophy</h2>
+                <p style="color:var(--muted);margin-bottom:8px;line-height:1.6">
+                    My approach is centered on crafting digital experiences that are not just visually appealing, but fundamentally usable and fast. I believe that a solid foundation of **semantic HTML** and **clean CSS** is the core of any successful web application. I thrive on translating complex design mockups into pixel-perfect, cross-browser compatible layouts, ensuring every user has a seamless experience, regardless of their device or assistive technology.
+                </p>
+            </section>
+
+            <!-- Projects -->
+            <section id="projects" aria-label="Projects">
+                <h2 style="font-size:20px;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px">Featured Projects</h2>
+
+                <div class="projects">
+                    <article class="project" aria-labelledby="p1">
+                        <h3 id="p1">IoT Dashboard UI Mockup</h3>
+                        <p>A static frontend interface for a smart home system, focusing on data visualization and component design entirely with CSS.</p>
+                        <div class="tags">
+                            <span class="tag">HTML/CSS</span>
+                            <span class="tag">Dashboard</span>
+                            <span class="tag">Grid Layout</span>
+                            <span class="tag">UX Focus</span>
+                        </div>
+                    </article>
+
+                    <article class="project" aria-labelledby="p2">
+                        <h3 id="p2">Responsive E-commerce Product Page</h3>
+                        <p>A detailed product display demonstrating advanced responsive techniques for fluid image galleries and flexible pricing modules.</p>
+                        <div class="tags">
+                            <span class="tag">Responsive</span>
+                            <span class="tag">Flexbox</span>
+                            <span class="tag">E-commerce</span>
+                            <span class="tag">Performance</span>
+                        </div>
+                    </article>
+
+                    <article class="project" aria-labelledby="p3">
+                        <h3 id="p3">Accessible Form System</h3>
+                        <p>Implementation of complex forms adhering to WCAG guidelines, including custom focus states and ARIA attributes for screen readers.</p>
+                        <div class="tags">
+                            <span class="tag">Accessibility</span>
+                            <span class="tag">WCAG</span>
+                            <span class="tag">Forms</span>
+                            <span class="tag">Usability</span>
+                        </div>
+                    </article>
+
+                    <article class="project" aria-labelledby="p4">
+                        <h3 id="p4">CSS Animation Showcase</h3>
+                        <p>A collection of pure CSS animations and transitions used to create engaging micro-interactions without reliance on JavaScript.</p>
+                        <div class="tags">
+                            <span class="tag">CSS3</span>
+                            <span class="tag">Keyframes</span>
+                            <span class="tag">Animation</span>
+                            <span class="tag">Interactions</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Contact form -->
+            <section aria-label="Contact" style="margin-top:30px">
+                <h2 style="font-size:20px;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px">Get In Touch</h2>
+                <p style="color:var(--muted);margin-bottom:16px;">I'm open to new project collaborations and frontend development roles. Send a message to discuss your requirements.</p>
+                <form class="contact" action="#" method="post" onsubmit="return false;">
+                    <input type="text" name="name" placeholder="Your Full Name" required>
+                    <input type="email" name="email" placeholder="Your Professional Email" required>
+                    <textarea name="message" placeholder="Describe the project or opportunity (include details like budget/timeline if applicable)"></textarea>
+                    <button class="send" type="submit">Send Message</button>
+                    <p id="contact-message" style="color:#2ecc71; margin-top: 10px; display: none; font-weight: 600;">Thank you! Your message has been sent (demo mode).</p>
+                </form>
+            </section>
+
+            <footer>
+                &copy; <span id="current-year">2024</span> Saif Zaman &mdash; Designed and built using only HTML & CSS
+            </footer>
+        </main>
+
+    </div>
+
+    <!-- JavaScript for current year update and form handling (Minimal JS is necessary for date/form feedback) -->
+    <script>
+        // Set the current year dynamically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Simple form handling for the demo (since it can't actually submit)
+        document.querySelector('.contact').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const messageBox = document.getElementById('contact-message');
+            messageBox.style.display = 'block';
+            
+            // Clear inputs after a short delay
+            setTimeout(() => {
+                document.querySelector('[name="name"]').value = '';
+                document.querySelector('[name="email"]').value = '';
+                document.querySelector('[name="message"]').value = '';
+                messageBox.style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
